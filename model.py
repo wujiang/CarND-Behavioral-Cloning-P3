@@ -19,6 +19,7 @@ IMG_PATH = "./data/IMG/{}"
 def read_image(path):
     path = path.split("/")[-1]
     image = cv2.imread(IMG_PATH.format(path))
+    return image
 
 
 def flip_image(image):
@@ -39,19 +40,22 @@ with open("data/driving_log.csv", "r") as f:
         right_measurement = center_measurement - CORRECTION
         measurements.extend([center_measurement, left_measurement, right_measurement])
 
-        images.append(flip_image(image))
-        measurements.append(-1.0 * measurement)
+        images.append(flip_image(center_image))
+        measurements.append(-1.0 * center_measurement)
+        images.append(flip_image(left_image))
+        measurements.append(-1.0 * left_measurement)
+        images.append(flip_image(right_image))
+        measurements.append(-1.0 * right_measurement)
 
 X_train = np.array(images)
 y_train = np.array(measurements)
-
 
 INPUT_SHAPE = (160, 320, 3)
 CROPPING = ((70, 25), (0, 0))
 
 model = Sequential()
 model.add(Lambda(lambda x: (x / 255.0) - 0.5, input_shape=INPUT_SHAPE))
-model.add(Cropping2D(cropping=CROPPING))
+model.add(Cropping2D(cropping=CROPPING, input_shape=INPUT_SHAPE))
 model.add(Convolution2D(6, 5, 5, activation="relu"))
 model.add(MaxPooling2D())
 model.add(Convolution2D(6, 5, 5, activation="relu"))
