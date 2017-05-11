@@ -12,7 +12,7 @@ from keras.layers.pooling import MaxPooling2D
 
 images = []
 measurements = []
-CORRECTION = 0.2
+CORRECTION = 0.15
 IMG_PATH = "./data/IMG/{}"
 
 
