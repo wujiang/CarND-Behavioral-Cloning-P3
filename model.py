@@ -12,7 +12,7 @@ from keras.layers.pooling import MaxPooling2D
 
 images = []
 measurements = []
-CORRECTION = 0.15
+CORRECTION = 0.1
 IMG_PATH = "./data/IMG/{}"
 
 
@@ -69,6 +69,6 @@ model.add(Dense(1))
 
 
 model.compile(loss="mse", optimizer="adam")
-model.fit(X_train, y_train, validation_split=0.2, shuffle=True, nb_epoch=20)
+model.fit(X_train, y_train, validation_split=0.2, shuffle=True, nb_epoch=10)
 
 model.save("model.h5")
