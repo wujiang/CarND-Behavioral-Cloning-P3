@@ -1,0 +1,58 @@
+(carnd-term1) carnd@ip-10-10-52-92:~/CarND-Behavioral-Cloning-P3$ python model.py
+Using TensorFlow backend.
+I tensorflow/stream_executor/dso_loader.cc:128] successfully opened CUDA library libcublas.so locally
+I tensorflow/stream_executor/dso_loader.cc:128] successfully opened CUDA library libcudnn.so locally
+I tensorflow/stream_executor/dso_loader.cc:128] successfully opened CUDA library libcufft.so locally
+I tensorflow/stream_executor/dso_loader.cc:128] successfully opened CUDA library libcuda.so.1 locally
+I tensorflow/stream_executor/dso_loader.cc:128] successfully opened CUDA library libcurand.so locally
+Train on 103536 samples, validate on 25884 samples
+Epoch 1/20
+I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:937] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:885] Found device 0 with properties:
+name: Tesla K80
+major: 3 minor: 7 memoryClockRate (GHz) 0.8235
+pciBusID 0000:00:1e.0
+Total memory: 11.17GiB
+Free memory: 11.11GiB
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:906] DMA: 0
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:916] 0:   Y
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:975] Creating TensorFlow device (/gpu:0) -> (device: 0, name: Tesla K80, pci bus id: 0000:00:1e.0)
+103536/103536 [==============================] - 175s - loss: 0.0290 - val_loss: 0.0204
+Epoch 2/20
+103536/103536 [==============================] - 170s - loss: 0.0256 - val_loss: 0.0203
+Epoch 3/20
+103536/103536 [==============================] - 170s - loss: 0.0232 - val_loss: 0.0209
+Epoch 4/20
+103536/103536 [==============================] - 171s - loss: 0.0212 - val_loss: 0.0216
+Epoch 5/20
+103536/103536 [==============================] - 172s - loss: 0.0196 - val_loss: 0.0204
+Epoch 6/20
+103536/103536 [==============================] - 169s - loss: 0.0181 - val_loss: 0.0214
+Epoch 7/20
+103536/103536 [==============================] - 160s - loss: 0.0171 - val_loss: 0.0202
+Epoch 8/20
+103536/103536 [==============================] - 156s - loss: 0.0159 - val_loss: 0.0241
+Epoch 9/20
+103536/103536 [==============================] - 165s - loss: 0.0150 - val_loss: 0.0229
+Epoch 10/20
+103536/103536 [==============================] - 163s - loss: 0.0140 - val_loss: 0.0219
+Epoch 11/20
+103536/103536 [==============================] - 154s - loss: 0.0132 - val_loss: 0.0240
+Epoch 12/20
+103536/103536 [==============================] - 159s - loss: 0.0124 - val_loss: 0.0222
+Epoch 13/20
+103536/103536 [==============================] - 152s - loss: 0.0117 - val_loss: 0.0228
+Epoch 14/20
+103536/103536 [==============================] - 153s - loss: 0.0110 - val_loss: 0.0237
+Epoch 15/20
+103536/103536 [==============================] - 155s - loss: 0.0104 - val_loss: 0.0220
+Epoch 16/20
+103536/103536 [==============================] - 159s - loss: 0.0098 - val_loss: 0.0218
+Epoch 17/20
+103536/103536 [==============================] - 160s - loss: 0.0094 - val_loss: 0.0225
+Epoch 18/20
+103536/103536 [==============================] - 152s - loss: 0.0089 - val_loss: 0.0231
+Epoch 19/20
+103536/103536 [==============================] - 153s - loss: 0.0085 - val_loss: 0.0237
+Epoch 20/20
+103536/103536 [==============================] - 155s - loss: 0.0081 - val_loss: 0.0272
