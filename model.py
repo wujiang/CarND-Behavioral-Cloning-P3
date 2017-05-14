@@ -81,19 +81,41 @@ validation_generator = transform_data(validation_samples)
 
 
 model = Sequential()
+# normalization
 model.add(Lambda(lambda x: (x / 255.0) - 0.5, input_shape=INPUT_SHAPE))
+# get ride of the top portion of the image which has sky and trees
+# and bottom portion which has the hood
+# image shape becomes 65 x 320 x 3
 model.add(Cropping2D(cropping=CROPPING, input_shape=INPUT_SHAPE))
+# convolution with filter size 24, kernel size 5x5, output shape 31 x 158 x 24
 model.add(Convolution2D(24, 5, 5, subsample=(2, 2), activation="relu"))
-model.add(Convolution2D(36, 5, 5, subsample=(2, 2), activation="relu"))
-model.add(Convolution2D(48, 5, 5, subsample=(2, 2), activation="relu"))
-model.add(Convolution2D(64, 3, 3, activation="relu"))
-model.add(Convolution2D(64, 3, 3, activation="relu"))
-model.add(Flatten())
-model.add(Dense(100))
-model.add(Dense(50))
-model.add(Dense(10))
-model.add(Dense(1))
 
+# output shape: 14x77x36
+model.add(Convolution2D(36, 5, 5, subsample=(2, 2), activation="relu"))
+
+# output shape: 5x37x48
+model.add(Convolution2D(48, 5, 5, subsample=(2, 2), activation="relu"))
+
+# output shape: 3x35x64
+model.add(Convolution2D(64, 3, 3, activation="relu"))
+
+# output shape: 1x33x64
+model.add(Convolution2D(64, 3, 3, activation="relu"))
+
+# output 2112
+model.add(Flatten())
+
+# fully connected 100
+model.add(Dense(100))
+
+# fully connected 50
+model.add(Dense(50))
+
+# fully connected 10
+model.add(Dense(10))
+
+# fully connected 1
+model.add(Dense(1))
 
 model.compile(loss="mse", optimizer="adam")
 model.fit_generator(train_generator,
