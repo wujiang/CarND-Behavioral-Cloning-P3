@@ -33,8 +33,11 @@ def flip_image(image):
 def transform_data(samples, batch_size=BATCH_SIZE):
     """Returns a generator for X_train and y_train
 
+    The size of the samples will be 5 times larger because of the
+    augmentation.
+
     :param samples: lines from driving_logs.csv
-    :param batch_size: number of samples to return each time
+    :param batch_size: number of samples to process each time
     """
     samples_size = len(samples)
     while True:
