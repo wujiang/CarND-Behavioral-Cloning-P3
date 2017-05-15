@@ -7,9 +7,8 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.utils import shuffle
 from keras.models import Sequential
-from keras.layers import Flatten, Dense, Lambda, Cropping2D
+from keras.layers import Flatten, Dense, Lambda, Cropping2D, Dropout
 from keras.layers.convolutional import Convolution2D
-from keras.layers.pooling import MaxPooling2D
 
 
 CORRECTION = 0.1
@@ -89,35 +88,38 @@ model.add(Lambda(lambda x: (x / 255.0) - 0.5, input_shape=INPUT_SHAPE))
 model.add(Cropping2D(cropping=CROPPING, input_shape=INPUT_SHAPE))
 # convolution with filter size 24, kernel size 5x5, output shape 31 x 158 x 24
 model.add(Convolution2D(24, 5, 5, subsample=(2, 2), activation="relu"))
-model.add(MaxPooling2D())
+model.add(Dropout(0.2))
 
 # output shape: 14x77x36
 model.add(Convolution2D(36, 5, 5, subsample=(2, 2), activation="relu"))
-model.add(MaxPooling2D())
+model.add(Dropout(0.2))
 
 # output shape: 5x37x48
 model.add(Convolution2D(48, 5, 5, subsample=(2, 2), activation="relu"))
-model.add(MaxPooling2D())
+model.add(Dropout(0.2))
 
 # output shape: 3x35x64
 model.add(Convolution2D(64, 3, 3, activation="relu"))
-model.add(MaxPooling2D())
+model.add(Dropout(0.2))
 
 # output shape: 1x33x64
 model.add(Convolution2D(64, 3, 3, activation="relu"))
-model.add(MaxPooling2D())
+model.add(Dropout(0.2))
 
 # output 2112
 model.add(Flatten())
 
 # fully connected 100
 model.add(Dense(100))
+model.add(Dropout(0.2))
 
 # fully connected 50
 model.add(Dense(50))
+model.add(Dropout(0.2))
 
 # fully connected 10
 model.add(Dense(10))
+model.add(Dropout(0.2))
 
 # fully connected 1
 model.add(Dense(1))
