@@ -48,21 +48,31 @@ the model, and it contains comments to explain how the code works.
 | Cropping2D            | 65x320x3 RBG image                            | 
 | Convolution 5x5     	| 2x2 stride, same padding, outputs 31x158x24   |
 | RELU					|												|
+| Dropout 0.2           |                                               |
 | Convolution 5x5	    | 2x2 stride, same padding, outputs 14x77x36	|
 | RELU					|												|
+| Dropout 0.2           |                                               |
 | Convolution 5x5	    | 2x2 stride, same padding, outputs 5x37x48 	|
 | RELU					|												|
+| Dropout 0.2           |                                               |
 | Convolution 3x3	    | 1x1 stride, same padding, outputs 3x35x64 	|
 | RELU					|												|
+| Dropout 0.2           |                                               |
 | Convolution 3x3	    | 1x1 stride, same padding, outputs 1x33x64 	|
 | RELU					|												|
+| Dropout 0.2           |                                               |
 | Fully connected		| input 2112, output 100						|
+| Dropout 0.2           |                                               |
 | Fully connected		| input 100, output 50							|
+| Dropout 0.2           |                                               |
 | Fully connected		| input 50, output 10							|
+| Dropout 0.2           |                                               |
 | Fully connected		| input 10, output 1							|
 
 
 #### 2. Attempts to reduce overfitting in the model
+
+The model contains dropout layers in order to reduce overfitting.
 
 The model was trained and validated on different data sets to ensure that the
 model was not overfitting (code line 79, 80, 122-126). The model was tested by
@@ -134,10 +144,12 @@ then preprocessed this data by:
 So the final size of data points is 8312 * 6 = 49872.
 
 
-I finally randomly shuffled the data set and put Y% of the data into a
+I finally randomly shuffled the data set and put 20% of the data into a
 validation set.
 
 I used this training data for training the model. The validation set helped
 determine if the model was over or under fitting. The ideal number of epochs was
-10 as evidenced by `val_loss`. I used an `adam ` optimizer so that manually
+14 as evidenced by `val_loss`. I used an `adam ` optimizer so that manually
 training the learning rate wasn't necessary.
+
+![val_loss](./images/val_loss.png)
