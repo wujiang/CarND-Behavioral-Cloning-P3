@@ -89,18 +89,23 @@ model.add(Lambda(lambda x: (x / 255.0) - 0.5, input_shape=INPUT_SHAPE))
 model.add(Cropping2D(cropping=CROPPING, input_shape=INPUT_SHAPE))
 # convolution with filter size 24, kernel size 5x5, output shape 31 x 158 x 24
 model.add(Convolution2D(24, 5, 5, subsample=(2, 2), activation="relu"))
+model.add(MaxPooling2D())
 
 # output shape: 14x77x36
 model.add(Convolution2D(36, 5, 5, subsample=(2, 2), activation="relu"))
+model.add(MaxPooling2D())
 
 # output shape: 5x37x48
 model.add(Convolution2D(48, 5, 5, subsample=(2, 2), activation="relu"))
+model.add(MaxPooling2D())
 
 # output shape: 3x35x64
 model.add(Convolution2D(64, 3, 3, activation="relu"))
+model.add(MaxPooling2D())
 
 # output shape: 1x33x64
 model.add(Convolution2D(64, 3, 3, activation="relu"))
+model.add(MaxPooling2D())
 
 # output 2112
 model.add(Flatten())
